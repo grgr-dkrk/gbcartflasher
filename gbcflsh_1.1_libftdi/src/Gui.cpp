@@ -163,7 +163,7 @@ void Gui::startup_info (void) {
      console->print (tr ("Device connected to: USB"));
      settings->setCom (0);	//0 is index of usb in combobox
     	  tmp =
-       tmp.sprintf (" %d%d.%d%d", status.ver_11, status.ver_12,
+       tmp.asprintf (" %d%d.%d%d", status.ver_11, status.ver_12,
         status.ver_21, status.ver_22);
        console->print (tr ("Device firmware version:") + tmp);
        console->line ();
@@ -196,15 +196,15 @@ void Gui::startup_info (void) {
 
     console->print (tr ("--Device information--"));
     tmp =
-    tmp.sprintf (" %d%d.%d%d", status.ver_11, status.ver_12,
+    tmp.asprintf (" %d%d.%d%d", status.ver_11, status.ver_12,
      status.ver_21, status.ver_22);
     console->print (tr ("Device firmware version:") + tmp);
     console->print ("\n" + tr ("--Cartridge information--"));
-    tmp = tmp.sprintf (" 0x%x", status.manufacturer_id);
+    tmp = tmp.asprintf (" 0x%x", status.manufacturer_id);
     console->print (tr ("FLASH memory manufacturer ID:") + tmp);
     tmp = QString::fromLocal8Bit(status.manufacturer);
     console->print (tr ("FLASH memory manufacturer name:") + " " + tmp);
-    tmp = tmp.sprintf (" 0x%x", status.chip_id);
+    tmp = tmp.asprintf (" 0x%x", status.chip_id);
     console->print (tr ("FLASH memory chip ID:") + tmp);
 
     if(settings->getMbc() == CUBIC_FLASH){
@@ -229,7 +229,7 @@ void Gui::startup_info (void) {
    {
      console->print ("\n" + tr ("--ROM/FLASH content information--"));
      console->print (tr ("Game logo signature is correct."));
-     tmp = tmp.sprintf (" %s", status.game_name);
+     tmp = tmp.asprintf (" %s", status.game_name);
      console->print (tr ("Game title:") + tmp);
      if (status.cgb == 1)
        tmp = tr ("YES");
@@ -243,11 +243,11 @@ void Gui::startup_info (void) {
      console->print (tr ("Designed for Super GB: ") + tmp);
      tmp = QString::fromLocal8Bit(status.typ);
      console->print (tr ("Cartridge type:") + " " + tmp);
-     tmp = tmp.sprintf (" %s", status.rom_size);
+     tmp = tmp.asprintf (" %s", status.rom_size);
      console->print (tr ("ROM size:") + tmp);
-     tmp = tmp.sprintf (" %s", status.ram_size);
+     tmp = tmp.asprintf (" %s", status.ram_size);
      console->print (tr ("RAM size:") + tmp);
-     tmp = tmp.sprintf (" 0x%x", status.crc16);
+     tmp = tmp.asprintf (" 0x%x", status.crc16);
      console->print (tr ("Checksum:") + tmp);
      console->line ();
    }

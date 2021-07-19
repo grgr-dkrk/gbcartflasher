@@ -77,4 +77,7 @@ enum mbc_t
   ROMONLY = 0x04, MBC5 = 0x05, RUMBLE = 0x06, CUBIC_FLASH = 0x07
 };
 
+#define FALSE 0
+#define TRUE 1
+
 #endif
