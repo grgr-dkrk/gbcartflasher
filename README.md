@@ -73,11 +73,10 @@ By changing the IDs, MacOS no longer tries to load the AppleUSBFTDI & FTDIUSBSer
 
 ## host software
 
-On mac, you'll need to install Qt4 & libftdi :
+On mac, you'll need to install Qt6 & libftdi :
 
 ```
-brew tap cartr/qt4
-brew install cartr/qt4/qt libftdi
+brew install qt libftdi
 ```
 
 Then, in the gbcflsh_1.1_libftdi folder :
