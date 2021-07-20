@@ -43,34 +43,6 @@ avrdude -P usb -c usbasp -p ATmega8515 -qq -B 8 -U flash:w:gbcf-fw-2.1-usb.hex
 
 The firmware has been [rewritten in C in 2015 by Tauwasser](https://github.com/Tauwasser/GBCartFlasher), but I haven't tested that version personally.
 
-## libftdi, kext and MacOS
-
-On MacOS, when you plug the flasher, the OS loads one or more kexts to act as drivers for the hardware. Those kexts are AppleUSBFTDI and, if you installed the FTDI VCP drivers, FTDIUSBSerialDriver.kext.
-
-The host software uses libftdi to talk to the flasher, and those kexts are locking the USB port we need.
-
-An easy solution is to unload the kexts before launching the host software :
-
-```
-sudo kextunload /System/Library/Extensions/AppleUSBFTDI.kext/
-sudo kextunload /System/Library/Extensions/FTDIUSBSerialDriver.kext/
-sudo kextunload /Library/Extensions/FTDIUSBSerialDriver.kext/
-```
-
-But it's cumbersome, and I always forget that step...
-
-Since kexts are loaded according to the USB VID / PID, we changed the VID / PID / Description of the FT232 chip using [FT_Prog](http://www.ftdichip.com/Support/Utilities.htm#FT_PROG) under Windows. Changing to those exacts values is required if you want to use the host software provided since they are hard-coded for the time being.
-
-```
-Product Description : gbcflsh
-VID : 1209
-PID : 6BCF
-```
-
-Those IDs are provided by the awesome [pid.codes project](http://pid.codes/).
-
-By changing the IDs, MacOS no longer tries to load the AppleUSBFTDI & FTDIUSBSerialDriver kexts, and libftdi can do its work.
-
 ## host software
 
 On mac, you'll need to install Qt6 & libftdi :
