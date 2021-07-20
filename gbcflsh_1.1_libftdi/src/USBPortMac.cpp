@@ -19,7 +19,7 @@ USBPortMac::USBPortMac():AbstractPort () {
 }
 
 bool USBPortMac::open_port (unsigned int port_num) {
-  int ftStatus = ftdi_usb_open_desc_index(&ftdic, 0x1209, 0x6BCF, "gbcflsh", NULL, port_num);
+  int ftStatus = ftdi_usb_open_desc_index(&ftdic, 0x0403, 0x6001, "FT232R USB UART", NULL, port_num);
   if (ftStatus < 0) {
     printf("couldn't open port : %d\n",ftStatus);
     return FALSE;
